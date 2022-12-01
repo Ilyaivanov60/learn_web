@@ -23,7 +23,8 @@ WEATHER_URL = "http://api.weatherapi.com/v1/current.json"
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + к вашей db
 
 SECRET_KEY = 'ваш secter key'
+basedir = 'Путь к вашей db'
 ```
 ## Запуска программы 
 
-добавить информацию по запуску програмы
+Запустите проект логально на своем компьютере ./run.sh
