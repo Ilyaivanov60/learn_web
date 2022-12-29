@@ -10,8 +10,10 @@ class News(db.Model):
     published = db.Column(db.DateTime, nullable=False)
     text = db.Column(db.Text, nullable=True)
 
+
     def comments_count(self):
         return Comment.query.filter(Comment.news_id == self.id).count()
+
 
     def __repr__(self):
         return '<News {} {} >'.format(self.title, self.url)
@@ -34,6 +36,7 @@ class Comment(db.Model):
 
     news = relationship('News', backref='comments')
     user = relationship('User', backref='comments')
+
 
     def __repr__(self):
         return '<Comment {}>'.format(self.id)

@@ -1,4 +1,3 @@
-from turtle import title
 from flask import Blueprint, render_template
 from webapp.user.decorarors import admin_required
 

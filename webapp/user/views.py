@@ -18,6 +18,7 @@ def login():
     login_form = LoginForm()
     return render_template('user/login.html', page_title=title, form=login_form)
 
+
 @blueprint.route('/process-login', methods=['POST'])
 def process_login():
     form = LoginForm()
@@ -32,11 +33,13 @@ def process_login():
     flash('Не правильные имя или пароль')
     return redirect(url_for('user.login'))
 
+
 @blueprint.route('/logout')
 def logout():
     logout_user()
     flash('Вы успешно разлогинились!')
     return redirect(url_for('news.index'))
+
 
 @blueprint.route('/register')
 def register():
@@ -45,6 +48,7 @@ def register():
     title = 'Регистрация'
     form = RegistrationForm()
     return render_template('user/registration.html', page_title=title, form=form)
+
 
 @blueprint.route('/process-register',  methods=['POST'])
 def process_register():
@@ -62,6 +66,3 @@ def process_register():
                 flash(f'Ошибка в поле{getattr(form, field).label.text}: {error}')
 
         return redirect(url_for('user.register'))
-
-
-    

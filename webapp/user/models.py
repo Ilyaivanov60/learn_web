@@ -14,12 +14,15 @@ class User(db.Model, UserMixin):
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
+
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
 
     @property
     def is_admin(self):
         return self.role == 'admin'
+
 
     def __repr__(self):
         return f'User name={self.username}, id={self.id}'

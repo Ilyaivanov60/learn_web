@@ -17,6 +17,7 @@ def get_html(url):
         print("Сетевая ошибка")
         return False
 
+
 def save_news(title, url, published):
     news_exits = News.query.filter(News.url == url).count()
     if not news_exits:

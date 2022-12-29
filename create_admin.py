@@ -5,7 +5,9 @@ from webapp import create_app
 from webapp.db import db
 from webapp.user.models import User
 
+
 app = create_app()
+
 
 with app.app_context():
     username = input('Ввидите ваше имя: ')

@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 import locale
 import platform
 
-
 from bs4 import BeautifulSoup
 
 from webapp.db import db
@@ -14,7 +13,9 @@ if platform.system() == 'Windows':
 else:
     locale.setlocale(locale.LC_TIME, "ru_RU")
 
+
 def parse_habr_date(date_str):
+    "format date from habr"
     if 'сегодня' in date_str:
         today = datetime.now()
         date_str = date_str.replace('сегодня', today.strftime('%d %B %Y'))
@@ -25,6 +26,7 @@ def parse_habr_date(date_str):
         return datetime.strptime(date_str, '%d %B %Y в %H:%M')
     except ValueError:
         return datetime.now()
+
 
 def get_news_snippets():
     html = get_html('https://habr.com/ru/search/?q=python&target_type=posts&order=date')
@@ -37,6 +39,7 @@ def get_news_snippets():
             published = news.find('span', class_='tm-article-snippet__datetime-published').text
             published = parse_habr_date(published)
             save_news(title, url, published)
+
 
 def get_news_content():
     news_without_text = News.query.filter(News.text.is_(None))
